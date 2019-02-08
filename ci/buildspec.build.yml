@@ -1,0 +1,15 @@
+version: 0.1
+
+phases:
+  pre_build:
+    commands:
+      - >
+        cd ${CODEBUILD_SRC_DIR} &&
+        cat ci/ci-requirements.txt |  perl -ne '/^(.*)ssh:\/\/git(@.*$)/ and print "$1https://'${GITHUBTOKEN}':$2\n" or print' > ci-requirements.txt &&
+        pip3 install -r ci-requirements.txt
+
+  build:
+    commands:
+      - env | sort
+      - ls -al && ls -al ${CODEBUILD_SRC_DIR} && ls -al ${CODEBUILD_SRC_DIR}/ci
+      - cd ${CODEBUILD_SRC_DIR} && makeit -v debug build

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  nfs-server:
+    image: ${__nfs-server__DCKR_REPOSITORY}:${__nfs-server__IMAGE_TAG}
+    container_name: nfs-server
+    network_mode: "host"
+    restart: always
+    privileged: true
+  #  ports: ['2049:2049']
+    volumes: ['/home/dgxuser/nfsfiles/:/nfsshare']
+    env_file:
+      - compose.env
+

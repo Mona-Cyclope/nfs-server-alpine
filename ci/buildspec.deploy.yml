@@ -1,0 +1,16 @@
+version: 0.1
+
+phases:
+  pre_deploy:
+    commands:
+      - >
+        cd ${CODEBUILD_SRC_DIR} &&
+        cat ci/ci-requirements.txt |  perl -ne '/^(.*)ssh:\/\/git(@.*$)/ and print "$1https://'${GITHUBTOKEN}':$2\n" or print' > ci-requirements.txt &&
+        pip3 install -r ci-requirements.txt
+
+  deploy:
+    commands:
+      - env | sort
+      - ls -al && ls -al ${CODEBUILD_SRC_DIR} && ls -al ${CODEBUILD_SRC_DIR}/ci
+      - echo "$DEPLOY_SSH_KEY" > "${CODEBUILD_SRC_DIR}/.ssh.key"
+      - cd ${CODEBUILD_SRC_DIR} && makeit -v debug deploy --@DEPLOY_SSH_KEY="${CODEBUILD_SRC_DIR}/.ssh.key"
