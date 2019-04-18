@@ -1,0 +1,9 @@
+---
+artifacts:
+  nfs-server-alpine:
+    version: "1.0.0"
+    type: ecr
+    repo_url: 668638571691.dkr.ecr.eu-west-1.amazonaws.com/cyclope/nfs-server-alpine
+    dockerfile: Dockerfile
+    aws_default_region: eu-west-1
+    aws_ecr_region: eu-west-1

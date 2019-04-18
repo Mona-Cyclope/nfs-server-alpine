@@ -1,2 +1,2 @@
--e git+ssh://git@github.com/Mona-Cyclope/cyclope-ci@v2.7.10#egg=cycci
+-e git+ssh://git@github.com/Mona-Cyclope/cyclope-ci@v2.9.3#egg=cycci
 git+ssh://git@github.com/Mona-Cyclope/makeit@v2.7.0#egg=makeit

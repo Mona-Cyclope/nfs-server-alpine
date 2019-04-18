@@ -2,8 +2,7 @@ version: '3'
 
 services:
   nfs-server:
-    image: ${__nfs-server__DCKR_REPOSITORY}:${__nfs-server__IMAGE_TAG}
-    container_name: nfs-server
+    image: 668638571691.dkr.ecr.eu-west-1.amazonaws.com/cyclope/nfs-server-alpine:1.0.0
     network_mode: "host"
     restart: always
     privileged: true
